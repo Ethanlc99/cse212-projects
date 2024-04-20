@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 public static class ArraysTester {
     /// <summary>
     /// Entry point for the tests
@@ -38,8 +40,19 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        
+        // Create variable to return, and a counter to know which index of the array we're editing
+        var result = new double[length];
+        int counter = 0;
 
-        return new double[0]; // replace this return statement with your own
+        // Big O notation of this function is O(n)
+        // Loop that changes each value, starting at index 0, in this fixed value array into a multiple of our starting number by multiplying our starting number by our counter, plus one. This process should stop before the counter becomes equal to the length of the array, since we start counting at 0 instead of 1. 
+        while (counter < length)
+        {
+            result[counter] = number * (counter+1);
+            counter ++;
+        }
+        return result; // replace this return statement with your own
     }
     
     /// <summary>
@@ -57,5 +70,12 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
+        // Get the last n numbers from the list, based on the amount, remove that from the data list, and insert it in front of the first item in the data list. 
+
+        List<int> l1 = data.GetRange(data.Count()-amount, amount);
+
+        data.RemoveRange(data.Count()-amount, amount);
+
+        data.InsertRange(0, l1);
     }
 }
