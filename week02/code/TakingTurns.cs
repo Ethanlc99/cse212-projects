@@ -15,7 +15,7 @@
         // Console.WriteLine(players);    // This can be un-commented out for debug help
         while (players.Length > 0)
             players.GetNextPerson();
-        // Defect(s) Found: 
+        // Defect(s) Found: AddPerson was adding people to the front of the line, instead of the back. This was because the Enqueue function was inserting people to index 1 instead of Adding them, which would put them at the back
 
         Console.WriteLine("---------");
 
@@ -38,7 +38,7 @@
         while (players.Length > 0)
             players.GetNextPerson();
 
-        // Defect(s) Found: 
+        // Defect(s) Found: No defects. Any issue with placement or order was fixed when Enqueue was modified
 
         Console.WriteLine("---------");
 
@@ -56,7 +56,7 @@
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: There was no option in AddPerson to make someone with 0 or less defined turns to have infinite terms. Changes it so when AddPerson runs, if the person is difined to have 0 or less turns, they instead had -1 turns. Also changed so that GetNextPerson checks if Person has negative turns, if they do they are added to the queue.
 
         Console.WriteLine("---------");
 
@@ -73,7 +73,7 @@
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: No errors. All defects were solved when Test 3 was resolved. 
 
         Console.WriteLine("---------");
 
