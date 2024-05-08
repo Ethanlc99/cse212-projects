@@ -28,8 +28,8 @@ public static class SetsAndMapsTester {
 
         // Problem 2: Degree Summary
         // Sample Test Cases (may not be comprehensive) 
-        Console.WriteLine("\n=========== Census TESTS ===========");
-        Console.WriteLine(string.Join(", ", SummarizeDegrees("census.txt")));
+        // Console.WriteLine("\n=========== Census TESTS ===========");
+        // Console.WriteLine(string.Join(", ", SummarizeDegrees("census.txt")));
         // Results may be in a different order:
         // <Dictionary>{[Bachelors, 5355], [HS-grad, 10501], [11th, 1175],
         // [Masters, 1723], [9th, 514], [Some-college, 7291], [Assoc-acdm, 1067],
@@ -111,6 +111,25 @@ public static class SetsAndMapsTester {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+
+        int counter = 0;
+        foreach (string word in words)
+        {
+            
+
+            char [] stringArray = word.ToCharArray();
+            Array.Reverse(stringArray);
+            string newWord = new string(stringArray);
+            // Console.WriteLine(newWord);
+            words[counter] = null;
+            if (words.Contains(newWord))
+            {
+                Console.WriteLine($"{word} & {newWord}");
+            }
+            counter++;
+        }
+
+
     }
 
     /// <summary>
@@ -131,6 +150,17 @@ public static class SetsAndMapsTester {
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
+
+            if (degrees.ContainsKey(fields[3]))
+            {
+                degrees[fields[3]]++;
+            }
+            else{
+                degrees.Add(fields[3], 1);
+            }
+
+
+
             // Todo Problem 2 - ADD YOUR CODE HERE
         }
 
@@ -158,7 +188,38 @@ public static class SetsAndMapsTester {
     /// #############
     private static bool IsAnagram(string word1, string word2) {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+
+        word1 = word1.Replace(" ", "");
+        word2 = word2.Replace(" ", "");
+
+        char [] newWord1 = word1.ToLower().ToCharArray();
+        char [] newWord2 = word2.ToLower().ToCharArray();
+        var letterCount = new Dictionary<char, int>();
+
+        foreach(char letter in newWord1){
+            if (letterCount.ContainsKey(letter)){
+                letterCount[letter]++;
+            }
+            else{
+                letterCount.Add(letter, 1);
+            }
+        }
+
+        foreach(char letter in newWord2){
+            if (letterCount.ContainsKey(letter)){
+                letterCount[letter]++;
+            }
+            else{
+                letterCount.Add(letter, 1);
+            }
+        }
+
+        foreach (KeyValuePair<char, int> kvp in letterCount){
+            if (kvp.Value % 2 != 0){
+                return false;
+            }
+        }
+        return true;
     }
 
     /// <summary>
