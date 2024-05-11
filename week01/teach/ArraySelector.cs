@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 public static class ArraySelector
 {
     public static void Run()
@@ -11,6 +13,17 @@ public static class ArraySelector
 
     private static int[] ListSelector(int[] list1, int[] list2, int[] select)
     {
+        var l3 = new int[select.Length];
+        int l1 = 0;
+        int l2 = 0;
+
+        foreach (int n in select)
+        {
+            if (n == 1)
+            {
+                
+            }
+        }
         return new int[0];
     }
 }
