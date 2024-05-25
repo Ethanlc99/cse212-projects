@@ -179,10 +179,10 @@ public static class RecursionTester {
     /// </summary>
     public static void PermutationsChoose(string letters, int size, string word = "") {
         // TODO Start Problem 2
-        if (word.Length == size){
+        if (word.Length == size){   // Define Base Case
             Console.WriteLine(word);
         }
-        else {
+        else {      // Recursive call for each unused letter
             for (var i = 0; i < letters.Length; i++){
                 var unusedLetters = letters.Remove(i,1);
 
@@ -242,6 +242,7 @@ public static class RecursionTester {
             remember = new Dictionary<int, decimal>();
         }
 
+        // Base Cases
         if (s == 0)
             return 0;
         if (s == 1)
@@ -251,6 +252,7 @@ public static class RecursionTester {
         if (s == 3)
             return 4;
 
+        // Using Dict for Memorization
         if (remember.ContainsKey(s)){
             return remember[s];
         }
@@ -278,17 +280,20 @@ public static class RecursionTester {
         // TODO Start Problem 4
 
         int numUnknown = pattern.Count(x=> x == '*');
+        
+        // Base Case        
         if (numUnknown == 1){
             Console.WriteLine(pattern.Replace("*","0"));
             Console.WriteLine(pattern.Replace("*","1"));
-
         }
+
+        // Recursive Calls
         else {
             StringBuilder sb = new StringBuilder(pattern);
             int patt1 = pattern.IndexOf('*');
-            sb[patt1] = '1';
+            sb[patt1] = '1';           // Revursive call replacing the wild with a 1
             WildcardBinary(sb.ToString());
-            sb[patt1] = '0';
+            sb[patt1] = '0';           // Recursive call replacing the wild with a 0
             WildcardBinary(sb.ToString());
         }
     }
